@@ -41,6 +41,24 @@ body {
   text-align: center;
 }
 
+.about_me {
+  color: #646cff;
+  border-radius: 50px;
+  box-shadow: 10px 5px 35px #112D32;
+  height: 100%;
+  width: 50%;
+  transform: translate(53%, 0%);
+}
+
+.title1 {
+    font-size: 1.5em; 
+    text-align: center;
+}
+.life {
+  font-size: 1.5em; 
+  text-align: center;
+}
+
 
 
 :root {
@@ -78,6 +96,7 @@ body {
   min-height: 100vh;
 }
 */
+/*
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -115,5 +134,5 @@ button:focus-visible {
   }
 }
 
-
+*/
 
