@@ -10,11 +10,11 @@ const contacts = [
   { title: "GitHub", content: "@shresthaa23", link: "https://github.com/shresthaa23"},
 ];
 
-
+const checker = false;
 function NavBar() {
   return (
     <nav className="navbar">
-      <p href="/" className="myName">Alex Shrestha</p>
+      <a href="/" className="myName">Alex Shrestha</a>
       <ul>
         <Cookies />
         <li>
@@ -25,9 +25,6 @@ function NavBar() {
         </li>
         <li>
           <a href="/"> Experience </a>
-        </li>
-        <li>
-          <a href="https://cdn.vox-cdn.com/thumbor/bz2Y1F1_NTbKLfnINojph4jGVzQ=/0x0:2880x1434/1200x800/filters:focal(1133x488:1593x948)/cdn.vox-cdn.com/uploads/chorus_image/image/71969421/Screen_Shot_2023_02_12_at_6.36.56_PM.0.png"> Batman </a>
         </li>
         <li>
           <a href="https://i.kym-cdn.com/entries/icons/original/000/048/705/stilgar_dune.jpg"> Lisan Al Gaib </a>
@@ -54,9 +51,14 @@ function HomePage() {
   );
 }
 
-
 function AboutMe() {
-  return (
+  const [image, setImage] = useState(true)
+
+  function handleImage() {
+    setImage(!image)
+  }
+
+  return (    
     <div className="aboutMe">     
           <h2 className="aboutMeTitle"> About Me </h2> 
           <p className="aboutMeText">
@@ -64,24 +66,27 @@ function AboutMe() {
             I'm apart of the <em>ACES LLP</em> and an <em>App Dev</em> Bootcamp member!
             In my free time I like going to the <em>gym, playing games</em> and <em>watching shows</em>. I just finished Peaky Blinders and I'm currently watching Modern Family & Snowfall.
           </p>
-          <img class="myphoto" src="/images/me.jpg" alt="photo of me"></img>
-    </div>
-  );
-}
+          { image && ( <img class="myphoto" src="/images/me.jpg" alt="photo of me" onClick={handleImage}></img> )}     
+          { !image && <img class="secondphoto" src="https://umd-brand.transforms.svdcdn.com/production/uploads/images/informal-seal.png?w=512&amp;h=512&amp;auto=compress%2Cformat&amp;fit=crop&amp;dm=1656362660&amp;s=f147c43be06ac2a530c41260819e63a1" alt="UMD" onClick={handleImage}></img>}
 
-function Batman() {
-  return (
-    <div className="batman">
-      <h7> I am Batman. </h7>
     </div>
   );
 }
 
 function Technical() {
+
+  const [tech, setTech] = useState(false)
+
+  function handleTech() {
+    setTech(!tech)
+  }
+
+
   return (
     <div className="tech">
+      { tech && (
       <div className="projects">
-      <h2 className="projectsTitle"> Projects </h2>
+      <h2 className="projectsTitle" onClick={handleTech}> <span>Projects</span> </h2>
         <div className="projectsText">
           <li>
             <a> This. </a>
@@ -97,8 +102,10 @@ function Technical() {
           </li>
         </div>
         </div>
+      )}
+      { !tech && (
       <div className="languages">
-      <h2 className="languagesTitle"> Languages </h2>
+      <h2 className="languagesTitle" onClick={handleTech}> <span>Languages</span> </h2>
         <li>
             <a> Java </a>
           </li>
@@ -124,6 +131,7 @@ function Technical() {
           <a> last few may be a joke </a>
         </li>
         </div>
+        )}
     </div>
   );
 }
@@ -175,8 +183,9 @@ function Cookies() {
   )
 }
 
+
 function LightMode() {
-  const [mode, setMode] = useState(false)
+   const [mode, setMode] = useState(false) 
 
   function handleMode() {
     setMode(!mode)
@@ -203,13 +212,7 @@ function LightMode() {
 
 
 function App() {
-  /*
-  const [light, setLight] = useState(false)
-
-  function handleClick() {
-    setLight(!light)
-   */
-
+  
   return (
     <><>
       <NavBar />
@@ -218,7 +221,6 @@ function App() {
       </>
       <>
         <AboutMe />
-        <Batman />
         <Technical />
         <Contact />       
       </>   
