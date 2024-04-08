@@ -18,25 +18,25 @@ function NavBar() {
       <ul>
         <Cookies />
         <li>
-          <a className="nav" href="/"> Home </a>
+          <a href="/"> Home </a>
         </li>
         <li>
-          <a className="nav" href="/"> About Me </a>
+          <a href="/"> About Me </a>
         </li>
         <li>
-          <a className="nav" href="/"> Experience </a>
+          <a href="/"> Experience </a>
         </li>
         <li>
-          <a className="nav" href="https://cdn.vox-cdn.com/thumbor/bz2Y1F1_NTbKLfnINojph4jGVzQ=/0x0:2880x1434/1200x800/filters:focal(1133x488:1593x948)/cdn.vox-cdn.com/uploads/chorus_image/image/71969421/Screen_Shot_2023_02_12_at_6.36.56_PM.0.png"> Batman </a>
+          <a href="https://cdn.vox-cdn.com/thumbor/bz2Y1F1_NTbKLfnINojph4jGVzQ=/0x0:2880x1434/1200x800/filters:focal(1133x488:1593x948)/cdn.vox-cdn.com/uploads/chorus_image/image/71969421/Screen_Shot_2023_02_12_at_6.36.56_PM.0.png"> Batman </a>
         </li>
         <li>
-          <a className="nav" href="/"> Technical </a>
+          <a href="https://i.kym-cdn.com/entries/icons/original/000/048/705/stilgar_dune.jpg"> Lisan Al Gaib </a>
         </li>
         <li>
-          <a className="nav" href="https://i.kym-cdn.com/entries/icons/original/000/048/705/stilgar_dune.jpg"> Lisan Al Gaib </a>
+          <a href="/"> Contact Me </a>
         </li>
-        <li>
-          <a className="nav" href="/"> Contact Me </a>
+        <li> 
+          <a> <LightMode /> </a>
         </li>
       </ul>
     </nav>
@@ -156,31 +156,60 @@ function Cookies() {
   return (
     <>
       <h1>{clicked}</h1>
-        <div className="cookie">
-          <button className="buttonCookie" onClick={() => {
-              if (clicked + 10 > 500) {
-                setClicked(clicked + 25)
-              } else if (clicked + 5 > 250) {
-                setClicked(clicked + 10)
-              } else if (clicked + 3 > 200) {
-                setClicked(clicked + 5)
-              } else if (clicked + 2 > 100) {
-                setClicked(clicked + 3)
-              } else if (clicked + 1 > 50) {
-                setClicked(clicked + 2)
-              } else {
-                setClicked(clicked + 1)
-              }
-          }}></button>
-       </div>
+        <button className="buttonCookie" onClick={() => {
+            if (clicked + 10 > 500) {
+              setClicked(clicked + 25)
+            } else if (clicked + 5 > 250) {
+              setClicked(clicked + 10)
+            } else if (clicked + 3 > 200) {
+              setClicked(clicked + 5)
+            } else if (clicked + 2 > 100) {
+              setClicked(clicked + 3)
+            } else if (clicked + 1 > 25) {
+              setClicked(clicked + 2)
+            } else {
+              setClicked(clicked + 1)
+            }
+        }}></button>
     </>
   )
+}
 
+function LightMode() {
+  const [mode, setMode] = useState(false)
 
+  function handleMode() {
+    setMode(!mode)
+  }
+
+  if (mode) {
+    return ( 
+      <>
+        <div className="light" onClick={handleMode}> 
+          Dark Mode 
+        </div>
+      </>
+    )
+  } else {
+    return ( 
+      <>
+        <div className="dark" onClick={handleMode}> 
+          Light Mode 
+        </div>
+      </>
+    )
+  }
 }
 
 
 function App() {
+  /*
+  const [light, setLight] = useState(false)
+
+  function handleClick() {
+    setLight(!light)
+   */
+
   return (
     <><>
       <NavBar />
