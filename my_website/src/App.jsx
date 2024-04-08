@@ -16,6 +16,7 @@ function NavBar() {
     <nav className="navbar">
       <p href="/" className="myName">Alex Shrestha</p>
       <ul>
+        <Cookies />
         <li>
           <a className="nav" href="/"> Home </a>
         </li>
@@ -146,6 +147,35 @@ function MyContacts({ title, content, link }) {
       <a className="socials" href={link}>{content}</a>
     </div>
   );
+
+}
+
+function Cookies() {
+  const [clicked, setClicked] = useState(0)
+
+  return (
+    <>
+      <h1>{clicked}</h1>
+        <div className="cookie">
+          <button className="buttonCookie" onClick={() => {
+              if (clicked + 10 > 500) {
+                setClicked(clicked + 25)
+              } else if (clicked + 5 > 250) {
+                setClicked(clicked + 10)
+              } else if (clicked + 3 > 200) {
+                setClicked(clicked + 5)
+              } else if (clicked + 2 > 100) {
+                setClicked(clicked + 3)
+              } else if (clicked + 1 > 50) {
+                setClicked(clicked + 2)
+              } else {
+                setClicked(clicked + 1)
+              }
+          }}></button>
+       </div>
+    </>
+  )
+
 
 }
 
