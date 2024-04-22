@@ -26,7 +26,7 @@ async def moreCookie(item: Item):
 @app.delete('/remove')
 async def lessCookie(item: Item):
     if item.count > len(cookie):
-        return {'removing too many cookies'}
+        return {'removing too many cookies not happening'}
     else:
         for x in range(item.count):
             cookie.pop(0)
