@@ -16,7 +16,7 @@ function NavBar() {
     <nav className="navbar">
       <a href="/" className="myName">Alex Shrestha</a>
       <ul>
-        <Cookies />
+        <Cookies />        
         <li>
           <a href="/"> Home </a>
         </li>
