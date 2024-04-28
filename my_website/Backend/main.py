@@ -7,24 +7,37 @@ app = FastAPI()
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
+origins = [
+    "*",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 cookie = []
 
 @app.get('/items')
-async def getCookie():
+async def get_items():
     return cookie
 
 class Item(BaseModel):
     count: int
 
 @app.post('/add')
-async def moreCookie(item: Item):
+async def add_item(item: Item):
     for x in range(item.count):
         cookie.append("Cookies!")
     return {'have more cookies now'}
 
 
 @app.delete('/remove')
-async def lessCookie(item: Item):
+async def remove_item(item: Item):
     if item.count > len(cookie):
         return {'removing too many cookies not happening'}
     else:

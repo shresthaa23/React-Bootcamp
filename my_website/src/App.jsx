@@ -210,6 +210,120 @@ function LightMode() {
   }
 }
 
+function LoadCookiesSection() {
+  const [image, setImage] = useState(true)
+
+  async function handleImage() {
+    await addItems(1);
+    await renderItems();
+  }
+
+  async function renderItems() {
+    const items = await getItems();
+  }
+
+
+  return (    
+    <div className="loadCookies">     
+        <h1 className="cookiesTitle"> Cookies here bro </h1> 
+        <button id="cookieButt" onClick={handleImage} >Add item</button>
+
+        
+        <ul className="cookiesList">              
+          <p>First is free though</p>     
+        </ul>
+    </div>
+  );
+}
+
+
+async function getItems() {
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow"
+  };
+  
+  return fetch("http://127.0.0.1:8000/items", requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data); // Handle response data
+      return data; // Return data for further processing if needed
+    })
+    .catch((error) => console.error(error));
+}
+
+
+
+async function addItems(counter) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const raw = JSON.stringify({
+    count: counter // Ensure that the request body has a "count" property
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+  };
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/add", requestOptions);
+    if (!response.ok) {
+      throw new Error("HTTP error " + response.status);
+    }
+    const data = await response.json();
+    console.log(data); // Handle response data
+    return data; // Return data for further processing if needed
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return null;
+  }
+}
+
+async function renderItems() {
+  const todoList = document.getElementById('cookiesList'); // ul component
+  todoList.innerHTML = '';
+
+  const items = await getItems();
+
+  items.map((item, index) => {
+      // create bullet point
+      const li = document.createElement('li');
+      li.textContent = item;
+
+      todoList.appendChild(li);
+  });
+
+ 
+}
+
+async function PrintThis(items) {
+  return (
+    <div>
+      {items.map((word, index) => (
+        <div key={index}>{word}</div>
+      ))}
+    </div>
+  );
+}
+
+
+
+window.onload = async () => {
+  // get request to backend
+  await renderItems();
+
+  // button to add elements
+  const addButton = document.getElementById('cookieButt');
+  addButton.addEventListener('click', async () => {
+    await addItems(1);
+    await renderItems();
+  })
+}
+
 
 function App() {
   
@@ -217,13 +331,15 @@ function App() {
     <><>
       <NavBar />
     </><>
-        <HomePage />          
+        <HomePage />  
       </>
       <>
         <AboutMe />
         <Technical />
-        <Contact />       
+        <Contact /> 
+        <LoadCookiesSection />      
       </>   
+      
     </>
   )
 }

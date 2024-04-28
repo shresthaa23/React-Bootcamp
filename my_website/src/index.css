@@ -79,7 +79,7 @@ a:hover {
   text-align: center;
 }
 
-.aboutMe {
+.loadCookies, .aboutMe {
   border-radius: 50px;
   box-shadow: 10px 5px 35px #112D32;
   height: 100%;
@@ -89,10 +89,9 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-around;   
-
 }
 
-.aboutMeTitle {
+.aboutMeTitle, .cookiesTitle  {
   color: #646cff;
   font-size: 1.5em; 
   text-align: center;
@@ -154,10 +153,6 @@ a:hover {
 .buttonCookie:hover {
   border-color: #646cff;
 }
-
-
-
-
 
 
 
